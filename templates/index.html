@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>GreenPrint</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="../static/css/responsive.css" rel="stylesheet" />
+  <!-- favicon -->
+  <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="#">
+            <img src="../static/images/GreenPrint_icon.png" alt="" width="40px" height="40px">
+            <span>GreenPrint</span>
+          </a>
+
+          <div class="navbar-collapse" id="">
+            <div class="d-none d-lg-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                {% if get_session == None %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">
+                    <img src="../static/images/login.png" alt="" />
+                    <span>Login</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/singup">
+                    <img src="../static/images/signup.png" alt="" />
+                    <span>Sign Up</span>
+                  </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/userconsole">
+                    <img src="../static/images/console.png" alt="" />
+                    <span>Go to your personal GreenPrint console!</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">
+                    <img src="../static/images/logout.png" alt="" />
+                    <span>Logout</span></a>
+                </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 mb-3 mb-lg-0 mr-5">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+
+            <div class="custom_menu-btn">
+              <button onclick="openNav()">
+                <span class="s-1">
+
+                </span>
+                <span class="s-2">
+
+                </span>
+                <span class="s-3">
+
+                </span>
+              </button>
+            </div>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="#">HOME</a>
+                <a href="/team">TEAM</a>
+                <a href="/portfolio">IMAGES</a>
+                <a href="/contact">CONTACT US</a>
+                <a href="/buy">BUY</a>
+
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">01</li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1">02</li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row">
+              <div class="col-md-3 offset-md-2">
+                <div class="slider_detail">
+                  <h1>
+                    Design
+                    <span>
+                      Revolution
+                    </span>
+                  </h1>
+                  <p>
+                    Experience the next frontier of 3D printing with GreenPrint. This groundbreaking filament
+                    transformer seamlessly blends innovation and user-friendliness, putting precision at your
+                    fingertips. Unleash your creativity effortlessly, as GreenPrint revolutionizes the way you bring
+                    your ideas to life. Explore a new era of printing technology.
+                  </p>
+                  <div>
+                    <a href="/buy">
+                      Buy
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="slider_img-box">
+                  <img src="../static/images/maquina.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row">
+              <div class="col-md-3 offset-md-2">
+                <div class="slider_detail">
+                  <h1>
+                    ECO-FRIENDLY
+                    <span>
+                      3D PRINTING
+                    </span>
+                  </h1>
+                  <p>
+                    Join the movement towards sustainable creativity with GreenPrint. This eco-friendly marvel
+                    transforms plastic bottles into premium filament, making every print a step towards a greener
+                    future. Craft with a clear conscience, knowing that GreenPrint is more than a printer - it's a
+                    commitment to environmental responsibility. Redefine your prints, redefine sustainability.
+                  </p>
+                  <div>
+                    <a href="/buy">
+                      Buy
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="slider_img-box">
+                  <img src="../static/images/plastic.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel_btn-container">
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- end slider section -->
+  </div>
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container">
+      <h2>
+        Our Purpose
+      </h2>
+      <p>
+        GreenPrint was born as the culmination of a visionary final project at Harvard's CS50x course, driven by a
+        shared commitment to harnessing technology for positive change. Beyond academia, GreenPrint emerged as an
+        initiative to better our world. Our purpose extends beyond the mere transformation of plastic bottles into 3D
+        printing filament; it's about transforming possibilities, fostering sustainability, and leaving a lasting impact
+        on our planet.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="about_card-container">
+        <div class="about_card">
+          <div class="about-detail">
+            <div class="about_img-box">
+              <img src="../static/images/leaf.png" alt="">
+            </div>
+            <div class="card_detail-ox">
+              <h4>
+                Eco-Friendly
+              </h4>
+              <p>
+                The GreenPrint machine exemplifies eco-friendliness through its transformative process. By repurposing
+                discarded plastic bottles as the raw material for 3D printing filament, it actively reduces plastic
+                waste.
+              </p>
+            </div>
+          </div>
+          <div>
+            <a href="" class="about_btn">
+              Read More
+            </a>
+          </div>
+        </div>
+        <div class="about_card">
+          <div class="about-detail">
+            <div class="about_img-box">
+              <img src="../static/images/innovation.png" alt="">
+            </div>
+            <div class="card_detail-ox">
+              <h4>
+                Innovation
+              </h4>
+              <p>
+                GreenPrint stands at the forefront of innovation in 3D printing technology. By seamlessly transforming
+                plastic bottles into high-quality filament, it redefines the creative process.
+              </p>
+            </div>
+          </div>
+          <div>
+            <a href="" class="about_btn">
+              Read More
+            </a>
+          </div>
+        </div>
+        <div class="about_card">
+          <div class="about-detail">
+            <div class="about_img-box">
+              <img src="../static/images/usefulness.png" alt="">
+            </div>
+            <div class="card_detail-ox">
+              <h4>
+                Usefulness
+              </h4>
+              <p>
+                GreenPrint isn't just a machine; it's a transformative force in the world of 3D printing. This
+                innovative device takes discarded plastic bottles and turns them into premium filament, the building
+                blocks for your 3D creations.
+              </p>
+            </div>
+          </div>
+          <div>
+            <a href="" class="about_btn">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+
+
+  <!-- portfolio section -->
+  <section class="portfolio_section layout_padding2">
+    <div class="container">
+      <h2>
+        IMAGES
+      </h2>
+    </div>
+    <div class="container layout_padding2-top ">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="portfolio_img-box">
+            <img src="../static/images/portfolio-img-1.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="portfolio_img-box">
+            <img src="../static/images/portfolio-img-2.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="portfolio_img-box">
+            <img src="../static/images/portfolio-img-3.png" alt="">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="portfolio_img-box">
+            <img src="../static/images/portfolio-img-4.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- end portfolio section -->
+
+
+  <!-- team section  -->
+  <section class="team_section layout_padding">
+    <div class="container">
+      <h2>
+        OUR TEAM
+      </h2>
+      <p>
+        We are a group of students taking CS50x with the purpose of impacting the world.
+      </p>
+    </div>
+    <div class="container">
+      <div class="team_card-container layout_padding2">
+        <div class="team_card">
+          <div class="team_img-box">
+            <img src="../static/images/mau.png" alt="">
+          </div>
+          <div class="team_detail-box">
+            <h5>
+              Mau Morales
+            </h5>
+            <p>
+              CEO - Developer
+            </p>
+            <div class="team_follow">
+              <h6>
+                Follow On
+              </h6>
+              <div class="team_social">
+                <div>
+                  <a href="">
+                    <img src="../static/images/facebook-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/twitter-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/linkedin.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/instagram.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team_card">
+          <div class="team_img-box">
+            <img src="../static/images/jorge.png" alt="">
+          </div>
+          <div class="team_detail-box">
+            <h5>
+              Jorge Paiz
+            </h5>
+            <p>
+              CEO - Engineer
+            </p>
+            <div class="team_follow">
+              <h6>
+                Follow On
+              </h6>
+              <div class="team_social">
+                <div>
+                  <a href="">
+                    <img src="../static/images/facebook-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src=" ../static/images/twitter-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/linkedin.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/instagram.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team_card">
+          <div class="team_img-box">
+            <img src="../static/images/david.png" alt="">
+          </div>
+          <div class="team_detail-box">
+            <h5>
+              David Gabriel
+            </h5>
+            <p>
+              CEO - Developer
+            </p>
+            <div class="team_follow">
+              <h6>
+                Follow On
+              </h6>
+              <div class="team_social">
+                <div>
+                  <a href="">
+                    <img src="../static/images/facebook-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/twitter-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/linkedin.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/instagram.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="team_card">
+          <div class="team_img-box">
+            <img src="../static/images/team-4.png" alt="">
+          </div>
+          <div class="team_detail-box">
+            <h5>
+              David Knauth
+            </h5>
+            <p>
+              Colaborator
+            </p>
+            <div class="team_follow">
+              <h6>
+                Follow On
+              </h6>
+              <div class="team_social">
+                <div>
+                  <a href="">
+                    <img src="../static/images/facebook-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/twitter-logo-button.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/linkedin.png" alt="">
+                  </a>
+                </div>
+                <div>
+                  <a href="">
+                    <img src="../static/images/instagram.png" alt="">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- end team section -->
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <p>
+        Don’t Hesitate To Ask
+      </p>
+      <h2 class="">
+        FREE CONSULTATION
+      </h2>
+    </div>
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-6 ">
+          <form action="{{url_for('send_mail_request')}}" method="post">
+            <div class="contact_form-container">
+              <div>
+                <div>
+                  <label>
+                    Name
+                    <input type="text" name="name" />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Email
+                    <input type="email" name="email" />
+                  </label>
+                </div>
+
+                <div>
+                  <label>
+                    Phone Number
+                    <input type="text" name="phone_number" />
+                  </label>
+                </div>
+
+                <div>
+                  <label>
+                    Message
+                    <textarea name="message" id="" cols="30" rows="10"></textarea>
+                  </label>
+                </div>
+                <div class="mt-5">
+                  <button type="submit">
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-6">
+          <div class="contact_img-box">
+            <img src="../static/images/harvard-logo.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <hr class="footer_hr">
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy;
+      2023 All Rights Reserved. Design by
+      <a href="">Mauricio Morales</a>
+      and <a href="">David Gabriel</a>
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="../static/js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../static/js/bootstrap.js"></script>
+
+
+
+  <script>
+    function openNav() {
+      document.getElementById("myNav").classList.toggle("menu_width")
+      document.querySelector(".custom_menu-btn").classList.toggle("menu_btn-style")
+    }
+  </script>
+
+
+</body>
+
+</html>
