@@ -719,3 +719,12 @@ a:focus {
 }
 
 /* end footer section*/
+
+.error {
+  margin: 10px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-radius: 25px;
+}

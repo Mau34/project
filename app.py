@@ -1,17 +1,11 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_session import Session
-from flask_socketio import SocketIO
-from serial import Serial, SerialException
-from serial.tools.list_ports import comports
 from sqlite3 import connect, IntegrityError
-from flask_mail import Mail, Message
 from functools import wraps
 from random import randint
-import time, bcrypt, json, os
+import bcrypt
 
 app = Flask(__name__)
-socketio = SocketIO(app)
-arduino = None
 
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
@@ -19,94 +13,6 @@ Session(app)
 
 db_conn = connect("GreenPrint.db", check_same_thread=False)
 db_cursor = db_conn.cursor()
-
-
-def connect_to_arduino():
-    global arduino
-    try:
-        arduino = Serial("COM6", 9600, timeout=2)
-        print("Connection to Arduino successful")
-    except SerialException as e:
-        print(f"Failed to connect to Arduino: {e}")
-
-
-def close_arduino_connection():
-    global arduino
-    if arduino and arduino.is_open:
-        arduino.close()
-        print("Connection to Arduino closed")
-
-
-def read_serial_data():
-    global arduino
-    try:
-        if not arduino or not arduino.is_open:
-            print("Arduino not connected. Exiting read_serial_data.")
-            return
-
-        print(f"Connection to serial port {arduino.port} is opened")
-
-        while True:
-            data = arduino.readline().decode("utf-8").strip()
-            try:
-                if len(data) == 0:
-                    print("Data none")
-                    msg = f"No device connect"
-                    socketio.emit("disconect", msg)
-                else:
-                    socketio.emit("temp", data)
-                    print(data)
-
-            except ValueError:
-                msg = f"No device connect"
-                socketio.emit("disconect", msg)
-                print(f"Invalid temperature data received: {msg}")
-
-    except SerialException as e:
-        print(f"Serial port error: {e}")
-
-
-@app.route("/read")
-def read():
-    return render_template("")
-
-
-@app.route("/open_door")
-def open_door():
-    global arduino
-    if arduino and arduino.is_open:
-        arduino.write(b"open_door")
-        return "Action to open the main door sent to Arduino."
-    else:
-        return "Arduino is not connected."
-
-
-@app.route("/open_back_door")
-def open_back_door():
-    global arduino
-    if arduino and arduino.is_open:
-        arduino.write(b"open_back_door")
-        return "Action to open the back door sent to Arduino."
-    else:
-        return "Arduino is not connected."
-
-
-@socketio.on("action")
-def action(data):
-    global arduino
-    num = data.get("value")
-
-    print(f"message: {num}")
-
-    try:
-        if arduino and arduino.is_open:
-            arduino.write(f"{num}\n".encode())
-            print(f"Enviado el valor {num} al Arduino")
-    except Exception as e:
-        print(f"Error al enviar el valor al Arduino: {e}")
-
-
-# ---------------- Rutas de la web -----------------------
 
 
 @app.route("/")
@@ -162,13 +68,18 @@ def singup():
             db_conn.commit()
             return redirect("/login")
         except IntegrityError:
-            db_cursor.execute(
-                "SELECT username FROM users WHERE username = ?", (username,)
-            )
-            validate_repeated_name = db_cursor.fetchone()[0]
-
-            db_cursor.execute("SELECT mail FROM users WHERE mail = ?", (email,))
-            validate_repeated_mail = db_cursor.fetchone()[0]
+            try:
+                db_cursor.execute(
+                    "SELECT username FROM users WHERE username = ?", (username,)
+                )
+                validate_repeated_name = db_cursor.fetchone()[0]
+            except TypeError:
+                validate_repeated_name = None
+            try:
+                db_cursor.execute("SELECT mail FROM users WHERE mail = ?", (email,))
+                validate_repeated_mail = db_cursor.fetchone()[0]
+            except TypeError:
+                validate_repeated_mail = None
 
             if validate_repeated_name == username:
                 flash("El nombre ingresado ya esta registrado", "error")
@@ -287,12 +198,6 @@ def console():
         return render_template("console.html", username=username, machine_id=None)
 
 
-@app.route("/controller")
-@login_required
-def controller():
-    return render_template("controller.html")
-
-
 @app.route("/team")
 def team():
     get_session = session.get("user_id")
@@ -311,28 +216,10 @@ def contact():
     return render_template("contact.html", get_session=get_session)
 
 
-@app.route("/send_mail", methods=["POST", "GET"])
-def send_mail_request():
-    if request.method == "POST":
-        name = request.form["name"]
-        email = request.form["email"]
-        phone_number = request.form["phone_number"]
-        message = request.form["message"]
-
-        # TODO: Sistema de envio de correo
-
-    else:
-        return render_template("index.html")
-
-
 if __name__ == "__main__":
-    connect_to_arduino()
-    # Start the serial data reading in a separate thread
-    socketio.start_background_task(target=read_serial_data)
     try:
         # Start the Flask app
-        socketio.run(app, debug=True, host="0.0.0.0", port=5000)
+        app.run(debug=False, host="127.0.0.1", port=5000)
     finally:
-        close_arduino_connection()
         db_cursor.close()
         db_conn.close()
