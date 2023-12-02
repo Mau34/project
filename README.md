@@ -1,7 +1,12 @@
-# GreenPrint
-#### Video Demo: 
-#### Description:
-GreenPrint es un proyecto innovador desarrollado por un equipo colaborativo compuesto por Mauricio Morales, Jorge Paiz y David Gabriel. La iniciativa aborda la problemática de la contaminación por plásticos al ofrecer una solución integral que combina tecnología y conciencia ambiental.
+# GreenPrint: Transformando Residuos Plásticos en Filamento para Impresoras 3D
+
+### Video Demo:
+
+[Ver video](https://youtu.be/-pSXYJX0eSY)
+
+### Descripción:
+
+EcoFilm (GreenPrint) es un proyecto innovador desarrollado por un equipo colaborativo compuesto por Mauricio Morales, Jorge Paiz y David Gabriel. La iniciativa aborda la problemática de la contaminación por plásticos al ofrecer una solución integral que combina tecnología y conciencia ambiental.
 
 La pieza central de este proyecto es una máquina de transformación de botellas de plástico en filamento para impresoras 3D. Esta máquina utiliza tecnología Arduino para el control y monitoreo de los procesos, permitiendo la recolección de botellas de plástico y su transformación en un material útil y sostenible para la fabricación de objetos tridimensionales.
 
@@ -22,4 +27,4 @@ Tecnologías Utilizadas:
 Frontend Web: HTML, CSS, JavaScript
 Backend Web: Python con Flask
 Control de Hardware: Arduino
-GreenPrint representa un ejemplo destacado de cómo la innovación tecnológica puede converger con la responsabilidad ambiental para abordar problemas globales. Este proyecto no solo demuestra la capacidad de transformar desechos plásticos en recursos útiles, sino que también fomenta la conciencia sobre la importancia del reciclaje y la adopción de prácticas sostenibles en la sociedad.
+GreenPrint representa un ejemplo destacado de cómo la innovación tecnológica puede converger con la responsabilidad ambiental para abordar problemas globales. Este proyecto no solo demuestra la capacidad de transformar desechos plásticos en recursos útiles, sino que también fomenta la conciencia sobre la importancia del reciclaje y la adopción de prácticas sostenibles en la sociedad.dades.
